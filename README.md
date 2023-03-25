@@ -14,16 +14,16 @@ Currently, the challenges are not that large. This is mainly, I believe, becasue
 
 - [x] - nested layouts
 - [x] - server rendering
-- [] - progressive enhancement - I haven't figured this out and I don't really know if it is there yet. The mutations story is a not been written yet so when that happens I think the progressive enhancement will have been figured out. 
+- [ ] - progressive enhancement - I haven't figured this out and I don't really know if it is there yet. The mutations story is a not been written yet so when that happens I think the progressive enhancement will have been figured out. 
 
 I also know, for a fact, that I don't fully understand how everything is working so I have probably messed up something from an optimization perspective. I've tried listening to podcasts and reading specs and watching videos, but from an understanding of how things are rendered in the tree, I probably have some optimization to do. 
 
 ### Next Steps
 
-- [] - Add user login capability (for comments, likes, etc)
-- [] - Setup supabase db for housing all comments/likes etc
-- [] - Add collaborator capability (I occasionally will put out a draft article so I want to have collaborators be able to comment before its finished to make it most accurate
-- [] - Tutorials/walkthroughs - I want to have video walk throughs or text based tutorials for learning anything from TS, Svelte, Next, React, Remix, Tailwind, etc.
+- [ ] - Add user login capability (for comments, likes, etc)
+- [ ] - Setup supabase db for housing all comments/likes etc
+- [ ] - Add collaborator capability (I occasionally will put out a draft article so I want to have collaborators be able to comment before its finished to make it most accurate
+- [ ] - Tutorials/walkthroughs - I want to have video walk throughs or text based tutorials for learning anything from TS, Svelte, Next, React, Remix, Tailwind, etc.
 
 ## Other stuff
 
