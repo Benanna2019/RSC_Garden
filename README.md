@@ -1,40 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Digital Garden built with Nextjs app dir and React Server components.
 
-## Getting Started
+## Initial move to Next app dir/RSC
 
-First, run the development server:
+The initial move over to Next app dir/RSC was from a desire to understand the new architecture to understand how it might be leveraged/utilized in apps/ideas I have. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The currently state of this digital garden was really a journey in understanding when to use Server Components and Client Components. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+I still don't have everything figured out. In fact, I am far from it. I have vercel analytics on my site and the Web Vitals are coming in telling my app is scoring in the 'very poor' region (I made up the very poor thing but red indicates such things as this 😅). 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Challenges
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Currently, the challenges are not that large. This is mainly, I believe, becasue I am moving this site over from Remix which has given great patterns and helped me see how the new app dir architecture with RSC has many similarities. 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [x] - nested layouts
+- [x] - server rendering
+- [ ] - progressive enhancement - I haven't figured this out and I don't really know if it is there yet. The mutations story is a not been written yet so when that happens I think the progressive enhancement will have been figured out. 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+I also know, for a fact, that I don't fully understand how everything is working so I have probably messed up something from an optimization perspective. I've tried listening to podcasts and reading specs and watching videos, but from an understanding of how things are rendered in the tree, I probably have some optimization to do. 
 
-## Learn More
+### Next Steps
 
-To learn more about Next.js, take a look at the following resources:
+- [ ] - Add user login capability (for comments, likes, etc)
+- [ ] - Setup supabase db for housing all comments/likes etc
+- [ ] - Add collaborator capability (I occasionally will put out a draft article so I want to have collaborators be able to comment before its finished to make it most accurate
+- [ ] - Tutorials/walkthroughs - I want to have video walk throughs or text based tutorials for learning anything from TS, Svelte, Next, React, Remix, Tailwind, etc.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Other stuff
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# RSC_Garden
-# RSC_Garden
+If you want to check out another app I built moving a Remix app to Nextjs app dir and RSC, here is the [github repo](https://github.com/Benanna2019/invoice-app-rsc). This app is definitely much more involved from getting into the weeds with the app dir and RSC. 
