@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
 import { usePathname } from 'next/navigation'
 
-import { HomeIcon, WritingIcon, NewsletterIcon } from '../Icon'
+import { HomeIcon, WritingIcon } from '../Icon'
 import { NavigationLink } from './NavigationLink'
 
 export function Navigation() {
@@ -39,8 +39,7 @@ export function Navigation() {
           icon: WritingIcon,
           trailingAccessory: null,
           isActive:
-          pathname === '/articles' ||
-          pathname.includes('/articles/'),
+            pathname === '/articles' || pathname?.includes('/articles/'),
           trailingAction: null,
           isExternal: false,
           onClickFn: null,

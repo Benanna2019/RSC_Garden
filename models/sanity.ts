@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import PicoSanity from 'picosanity'
 import { z } from 'zod'
-import { PostSchema, Post, SinglePost } from '../lib/post-validator'
+import { PostSchema, Post } from '@/lib/utils/post-validator'
 
 export type SanityClient = typeof clientToUse
 

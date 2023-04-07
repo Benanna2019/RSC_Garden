@@ -2,12 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { MapPin } from 'react-feather'
 import { Detail } from '../ListDetail/Detail'
-import {
-  SectionContainer,
-  SectionContent,
-  SectionTitle,
-  TableRow,
-} from './Home'
+import { SectionContainer, SectionContent, TableRow } from './Home'
 import CharlestonPinMap from '/public/pin_map_charleston.png'
 
 export function AboutPageContent() {
@@ -79,7 +74,10 @@ export function AboutPageContent() {
             <SectionContent>
               <div className="prose mx-auto">
                 <h2>Location</h2>
-                <Image src={CharlestonPinMap} alt="Map of Charleston's Peninsula" />
+                <Image
+                  src={CharlestonPinMap}
+                  alt="Map of Charleston's Peninsula"
+                />
                 <p className="text-quaternary flex items-center justify-end space-x-2 pt-2 text-sm md:text-right">
                   <MapPin size={12} />
                   <span>Charleston, SC</span>

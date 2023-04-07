@@ -1,9 +1,10 @@
-import React from 'react'
-import { Detail } from '../../components/ListDetail/Detail'
-import { ListItem } from '../../components/ListDetail/ListItem'
-import { SectionContainer, SectionContent } from '../../components/PageContent/Home'
-import { Post, Posts } from '../../lib/post-validator'
-import { getPosts } from '../../models/post'
+import React, { Suspense } from 'react'
+import { Detail } from '@/components/ListDetail/Detail'
+import { ListItem } from '@/components/ListDetail/ListItem'
+import { SectionContainer, SectionContent } from '@/components/PageContent/Home'
+import { LoadingSpinner } from '@/components/LoadingSpinner'
+import { Post } from '@/lib/utils/post-validator'
+import { getPosts } from '@/models/post'
 
 export default async function Articles() {
   let data = await getPosts()
@@ -17,15 +18,17 @@ export default async function Articles() {
               <SectionContent>
                 <div className="prose mx-auto">
                   <h1 className=" text-blue-500">All Articles</h1>
-                  {data.map((post: Post) => (
-                    <ListItem
-                      key={post._id}
-                      href={`/articles/${post.slug}`}
-                      title={post.title}
-                      description={post.excerpt}
-                      byline={post.date}
-                    />
-                  ))}
+                  <Suspense fallback={<LoadingSpinner />}>
+                    {data.map((post: Post) => (
+                      <ListItem
+                        key={post._id}
+                        href={`/articles/${post.slug}`}
+                        title={post.title}
+                        description={post.excerpt}
+                        byline={post.date}
+                      />
+                    ))}
+                  </Suspense>
                 </div>
               </SectionContent>
             </SectionContainer>

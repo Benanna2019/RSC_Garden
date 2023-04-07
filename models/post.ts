@@ -1,4 +1,4 @@
-import { Posts } from '../lib/post-validator'
+import { Posts } from '@/lib/utils/post-validator'
 import Sanity from './sanity'
 
 const sanity = Sanity()
