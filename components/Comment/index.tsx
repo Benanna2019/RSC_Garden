@@ -15,6 +15,8 @@ interface Props {
   type: 'POST'
 }
 
+export const revalidate = 0
+
 export const Comments = async function Comments({ refId, type }: Props) {
   const session = await getServerSession(authOptions)
   const supabase = createClient()

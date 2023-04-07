@@ -64,19 +64,11 @@ export async function handleEditComment(
 export async function handleDeleteComment(
   commentId: string,
   supabase: SupabaseContext['supabase'],
-  authorEmail: string,
-  sessionEmail: string,
 ) {
-  if (authorEmail !== sessionEmail) {
-    return {
-      error: { message: 'You are not authorized to delete this comment' },
-    }
-  }
-
   const { data, error } = await supabase
     .from('comments')
     .delete()
     .eq('id', commentId)
 
-  return { error }
+  return { data, error }
 }

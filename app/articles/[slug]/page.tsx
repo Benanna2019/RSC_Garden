@@ -3,6 +3,8 @@ import { getPostBySlug } from '@/models/post'
 import { Comments } from '@/components/Comment'
 import ArticleDetail from '@/components/Article/ArticleDetail'
 
+export const revalidate = 60
+
 export default async function PostPage({ params }: any) {
   let data = await getPostBySlug(params.slug)
 

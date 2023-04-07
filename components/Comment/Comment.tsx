@@ -37,12 +37,9 @@ export const Comment = ({ comment, session }: Props) => {
   // use supabase, providers, and forms to do editing.
 
   async function handleDelete() {
-    const { error } = await handleDeleteComment(
-      comment.id,
-      supabase,
-      comment?.author_email as string,
-      session?.user?.email as string,
-    )
+    const { data, error } = await handleDeleteComment(comment.id, supabase)
+    console.log('data', data)
+    console.log('error', error)
     if (error) {
       alert('There was an error deleting the message')
       return
