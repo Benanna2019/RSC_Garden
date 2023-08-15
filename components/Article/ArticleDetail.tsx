@@ -9,7 +9,6 @@ import { Detail } from '../ListDetail/Detail'
 import { Tags } from '../Tags'
 import { MarkdownRenderer } from '../MarkdownRenderer'
 import { LoadingSpinner } from '../LoadingSpinner'
-import { usePathname } from 'next/navigation'
 import { increment } from '@/app/actions'
 
 interface Props {
@@ -18,22 +17,10 @@ interface Props {
 }
 
 export default function ArticleDetail({ post, children }: Props) {
-  if (!post) {
-    return <Detail.Null />
-  }
-
-  const pathname = usePathname()
-
   const { inView, ref } = useInView({
     threshold: 0.9,
     triggerOnce: true,
   })
-
-  const data = {
-    pathname: pathname as string,
-    post_title: post.title,
-    post_id: post._id,
-  }
 
   React.useEffect(() => {
     if (inView) {
