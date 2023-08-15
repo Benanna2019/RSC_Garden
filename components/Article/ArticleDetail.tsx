@@ -1,11 +1,16 @@
+'use client'
 import * as React from 'react'
 import Link from 'next/link'
+//@ts-ignore
+import { useInView } from 'react-intersection-observer'
 import { timestampToCleanTime } from '@/lib/utils/transformers'
 import type { Post } from '@/lib/utils/post-validator'
 import { Detail } from '../ListDetail/Detail'
 import { Tags } from '../Tags'
 import { MarkdownRenderer } from '../MarkdownRenderer'
 import { LoadingSpinner } from '../LoadingSpinner'
+import { usePathname } from 'next/navigation'
+import { increment } from '@/app/actions'
 
 interface Props {
   post: Post
@@ -16,6 +21,25 @@ export default function ArticleDetail({ post, children }: Props) {
   if (!post) {
     return <Detail.Null />
   }
+
+  const pathname = usePathname()
+
+  const { inView, ref } = useInView({
+    threshold: 0.9,
+    triggerOnce: true,
+  })
+
+  const data = {
+    pathname: pathname as string,
+    post_title: post.title,
+    post_id: post._id,
+  }
+
+  React.useEffect(() => {
+    if (inView) {
+      increment(post.slug)
+    }
+  }, [inView])
 
   const publishedAt = timestampToCleanTime({ timestamp: post.date })
   return (
@@ -31,7 +55,7 @@ export default function ArticleDetail({ post, children }: Props) {
                 <p>← Back</p>
               </Link>
               <Tags tags={post.categories} />
-              <Detail.Title>{post.title}</Detail.Title>
+              <Detail.Title ref={ref}>{post.title}</Detail.Title>
               <span
                 title={publishedAt.raw}
                 className="inline-block leading-snug"

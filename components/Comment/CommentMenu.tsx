@@ -17,7 +17,7 @@ export function CommentMenu({
         <Menu>
           {({ open }) => (
             <>
-              <Menu.Button as="div" className="z-0 inline-flex ">
+              <Menu.Button as="div" className="z-10 inline-flex ">
                 <GhostButton
                   aria-label="Open comment actions menu"
                   size="small-square"
@@ -39,7 +39,7 @@ export function CommentMenu({
                   static
                   className="absolute right-0 -top-36 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md border border-gray-200 bg-white shadow-sm outline-none "
                 >
-                  {comment.author_email === session.user.email && (
+                  {comment.author_id === session.user.id && (
                     <div className="py-1">
                       <Menu.Item>
                         {({ active }) => (
@@ -58,20 +58,34 @@ export function CommentMenu({
                     </div>
                   )}
 
-                  {comment.author_email === session.user.email && (
+                  {comment.author_id === session.user.id && (
                     <div className="py-1">
                       <Menu.Item>
                         {({ active }) => (
-                          <span
-                            onClick={handleDelete}
-                            className={`${
-                              active
-                                ? 'bg-red-50 text-red-500 dark:bg-red-500 dark:bg-opacity-10 dark:text-red-500'
-                                : 'text-red-500 dark:text-red-500'
-                            } flex w-full cursor-pointer justify-between px-4 py-2 text-left text-sm leading-5`}
+                          <form
+                            action={async (formData) => {
+                              const id = formData.get('commentId') as string
+                              console.log('id for delete', id)
+                              await handleDelete(id)
+                            }}
                           >
-                            Delete
-                          </span>
+                            <input
+                              type="hidden"
+                              value={comment.id}
+                              readOnly
+                              name="commentId"
+                            />
+                            <button
+                              className={`${
+                                active
+                                  ? 'bg-red-50 text-red-500 dark:bg-red-500 dark:bg-opacity-10 dark:text-red-500'
+                                  : 'text-red-500 dark:text-red-500'
+                              } flex w-full cursor-pointer justify-between px-4 py-2 text-left text-sm leading-5`}
+                              type="submit"
+                            >
+                              Delete
+                            </button>
+                          </form>
                         )}
                       </Menu.Item>
                     </div>

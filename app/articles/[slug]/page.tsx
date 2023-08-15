@@ -1,9 +1,9 @@
 import type { Post } from '@/lib/utils/post-validator'
 import { getPostBySlug } from '@/models/post'
-import { Comments } from '@/components/Comment'
+import Comments from '@/components/Comment'
 import ArticleDetail from '@/components/Article/ArticleDetail'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export default async function PostPage({ params }: any) {
   let data = await getPostBySlug(params.slug)
@@ -12,7 +12,7 @@ export default async function PostPage({ params }: any) {
 
   return (
     <ArticleDetail post={post}>
-      <Comments refId={post._id} type="POST" />
+      <Comments refId={post._id} />
     </ArticleDetail>
   )
 }

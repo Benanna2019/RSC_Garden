@@ -1,18 +1,14 @@
-'use client'
-import { CommentForm } from '../Comment/CommentForm'
-import { SignInDialogComp } from './SignInDialogComp'
+import { getServerSession } from '@/lib/supabase/supabase-server'
+import { SignInDialog } from './SignInDialogComp'
 
-export default function SignInDialog({ refId, type, session }: any) {
-  return (
-    <SignInDialogComp>
-      {({ openModal }: any) => (
-        <CommentForm
-          refId={refId}
-          type={type}
-          openModal={openModal}
-          session={session}
-        />
-      )}
-    </SignInDialogComp>
-  )
+export default async function SignInDialogSession({
+  refId,
+}: {
+  refId: string
+}) {
+  const supabase = getServerSession()
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+  return <SignInDialog refId={refId} session={session} />
 }

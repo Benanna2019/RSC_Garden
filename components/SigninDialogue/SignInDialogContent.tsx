@@ -2,12 +2,13 @@
 import * as React from 'react'
 
 import { GithubButton } from '@/components/Button'
-import { signIn } from 'next-auth/react'
 
 import { usePathname } from 'next/navigation'
 import { GitHubIcon } from '../Icon'
+import { useSupabase } from '@/lib/supabase/supabase-browser'
 
 export function SignInDialogContent() {
+  const supabase = useSupabase()
   const pathname = usePathname()
   return (
     <div
@@ -85,7 +86,12 @@ export function SignInDialogContent() {
 
       <div className="flex items-stretch justify-items-stretch self-stretch">
         <GithubButton
-          onClick={() => signIn('github', { callbackUrl: pathname as string })}
+          onClick={() =>
+            supabase.auth.signInWithOAuth({
+              provider: 'github',
+              options: { redirectTo: pathname as string },
+            })
+          }
           style={{ flex: '1' }}
           size="large"
         >

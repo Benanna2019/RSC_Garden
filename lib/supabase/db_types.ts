@@ -3,85 +3,125 @@ export type Json =
   | number
   | boolean
   | null
-  | { [key: string]: Json }
+  | { [key: string]: Json | undefined }
   | Json[]
 
 export interface Database {
   public: {
     Tables: {
-      authors: {
-        Row: {
-          avatar_url: string | null
-          created_at: string | null
-          email: string | null
-          id: string
-          name: string | null
-          role: string | null
-          username: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          created_at?: string | null
-          email?: string | null
-          id: string
-          name?: string | null
-          role?: string | null
-          username?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          created_at?: string | null
-          email?: string | null
-          id?: string
-          name?: string | null
-          role?: string | null
-          username?: string | null
-        }
-      }
       comments: {
         Row: {
-          author_email: string | null
-          author_name: string | null
-          author_url: string | null
+          author_id: string
+          content: string
           created_at: string | null
           id: string
-          post_id: string | null
-          text: string | null
+          post_id: string
           updated_at: string | null
-          viewerCanDelete: boolean | null
-          viewerCanEdit: boolean | null
         }
         Insert: {
-          author_email?: string | null
-          author_name?: string | null
-          author_url?: string | null
+          author_id: string
+          content: string
           created_at?: string | null
           id?: string
-          post_id?: string | null
-          text?: string | null
+          post_id: string
           updated_at?: string | null
-          viewerCanDelete?: boolean | null
-          viewerCanEdit?: boolean | null
         }
         Update: {
-          author_email?: string | null
-          author_name?: string | null
-          author_url?: string | null
+          author_id?: string
+          content?: string
           created_at?: string | null
           id?: string
-          post_id?: string | null
-          text?: string | null
+          post_id?: string
           updated_at?: string | null
-          viewerCanDelete?: boolean | null
-          viewerCanEdit?: boolean | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "comments_author_id_fkey"
+            columns: ["author_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string
+          email: string
+          id: string
+          name: string
+          username: string
+        }
+        Insert: {
+          avatar_url: string
+          email: string
+          id: string
+          name: string
+          username: string
+        }
+        Update: {
+          avatar_url?: string
+          email?: string
+          id?: string
+          name?: string
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      views: {
+        Row: {
+          id: string
+          views_count: number
+        }
+        Insert: {
+          id: string
+          views_count?: number
+        }
+        Update: {
+          id?: string
+          views_count?: number
+        }
+        Relationships: []
       }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_article_view: {
+        Args: {
+          slug: string
+          inc_amt: number
+        }
+        Returns: undefined
+      }
+      increment_post_view:
+        | {
+            Args: {
+              slug: string
+              inc_amt: number
+            }
+            Returns: undefined
+          }
+        | {
+            Args: {
+              slug: string
+              inc_amt: number
+            }
+            Returns: undefined
+          }
+      increment_post_views: {
+        Args: {
+          slug: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

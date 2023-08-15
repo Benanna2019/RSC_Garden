@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 
 import { HomeIcon, WritingIcon } from '../Icon'
+import { WrenchScrewdriverIcon } from '@heroicons/react/24/outline'
 import { NavigationLink } from './NavigationLink'
 
 export function Navigation() {
@@ -44,6 +45,16 @@ export function Navigation() {
           isExternal: false,
           onClickFn: null,
         },
+        // isAdmin && {
+        //   href: '/admin',
+        //   label: 'Admin',
+        //   icon: WrenchScrewdriverIcon,
+        //   trailingAccessory: null,
+        //   isActive: pathname === '/admin' || pathname?.includes('/admin/'),
+        //   trailingAction: null,
+        //   isExternal: false,
+        //   onClickFn: null,
+        // },
       ],
     },
   ]

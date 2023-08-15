@@ -1,11 +1,14 @@
 /* eslint-disable react/display-name */
+'use client'
 import Link from 'next/link'
 import * as React from 'react'
+import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 
 interface BaseButtonProps {
   [key: string]: unknown
   size: string
   disabled?: boolean
+  children?: React.ReactNode
 }
 
 type ButtonAsButton = BaseButtonProps &
@@ -148,8 +151,16 @@ export const CommentButton = React.forwardRef((props: ButtonProps, ref) => {
   const opacity = composer.getOpacity(props.disabled)
   const radius = composer.getRadius(props.size)
   const composed = `${baseClasses} ${size} ${opacity} ${radius} ${classes}`
-  //@ts-ignore
-  return <BaseButton className={composed} forwardedRef={ref} {...props} />
+  const { pending } = useFormStatus()
+  return (
+    <BaseButton
+      disabled={pending}
+      className={composed}
+      //@ts-ignore
+      forwardedRef={ref}
+      {...props}
+    />
+  )
 })
 
 export const CommentInputButton = React.forwardRef(
@@ -164,7 +175,7 @@ export const CommentInputButton = React.forwardRef(
     const radius = composer.getRadius(props.size)
     const composed = `${baseClasses} ${size} ${opacity} ${radius} ${classes}`
     //@ts-ignore
-    return <input className={composed} type="submit" />
+    return <button className={composed} type="submit" />
   },
 )
 

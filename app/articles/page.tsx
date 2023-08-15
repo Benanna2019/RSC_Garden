@@ -6,6 +6,8 @@ import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { Post } from '@/lib/utils/post-validator'
 import { getPosts } from '@/models/post'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Articles() {
   let data = await getPosts()
 
@@ -18,7 +20,7 @@ export default async function Articles() {
               <SectionContent>
                 <div className="prose mx-auto">
                   <h1 className=" text-blue-500">All Articles</h1>
-                  <Suspense fallback={<LoadingSpinner />}>
+                  <Suspense fallback={<ArticleFallback />}>
                     {data.map((post: Post) => (
                       <ListItem
                         key={post._id}
@@ -35,6 +37,14 @@ export default async function Articles() {
           </div>
         </Detail.ContentContainer>
       </Detail.Container>
+    </div>
+  )
+}
+
+function ArticleFallback() {
+  return (
+    <div className="mx-auto flex h-full max-w-5xl flex-col items-center justify-center pt-8">
+      <LoadingSpinner />
     </div>
   )
 }

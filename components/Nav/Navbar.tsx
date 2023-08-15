@@ -4,8 +4,8 @@ import { Dialog, Popover } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { SignIn, SignOut } from '../Login'
 import { Navigation } from './Navigation'
-import type { Session } from 'next-auth'
 import Link from 'next/link'
+import { Session } from '@supabase/supabase-js'
 
 export function Navbar({ session }: { session: Session | null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)

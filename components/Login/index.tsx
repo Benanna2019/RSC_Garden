@@ -1,19 +1,25 @@
 'use client'
 
-import { signIn, signOut } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
+import { useSupabase } from '@/lib/supabase/supabase-browser'
+import { useRouter } from 'next/navigation'
 import { GhostButton } from '../Button'
 import { GitHubIcon } from '../Icon'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { Database } from '@/lib/supabase/db_types'
 
 export function SignOut() {
-  const pathname = usePathname()
+  const supabase = createClientComponentClient<Database>()
+  const router = useRouter()
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.refresh()
+  }
+
   return (
     <div className="flex items-stretch justify-items-stretch self-stretch">
-      <GhostButton
-        onClick={() => signOut({ callbackUrl: pathname as string })}
-        style={{ flex: '1' }}
-        size="large"
-      >
+      <GhostButton onClick={handleSignOut} style={{ flex: '1' }} size="large">
         → Sign out
       </GhostButton>
     </div>
@@ -21,14 +27,17 @@ export function SignOut() {
 }
 
 export function SignIn() {
-  const pathname = usePathname()
+  const supabase = useSupabase()
+
+  const handleSignIn = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: { redirectTo: `${location.origin}/auth/callback` },
+    })
+  }
   return (
     <div className="flex items-stretch justify-items-stretch self-stretch">
-      <GhostButton
-        onClick={() => signIn('github', { callbackUrl: pathname as string })}
-        style={{ flex: '1' }}
-        size="large"
-      >
+      <GhostButton onClick={handleSignIn} style={{ flex: '1' }} size="large">
         <GitHubIcon />
         <span>Signin w/ Github</span>
       </GhostButton>
