@@ -5,10 +5,11 @@ import { GithubButton } from '@/components/Button'
 
 import { usePathname } from 'next/navigation'
 import { GitHubIcon } from '../Icon'
-import { useSupabase } from '@/lib/supabase/supabase-browser'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { Database } from '@/lib/supabase/db_types'
 
 export function SignInDialogContent() {
-  const supabase = useSupabase()
+  const supabase = createClientComponentClient<Database>()
   const pathname = usePathname()
   return (
     <div

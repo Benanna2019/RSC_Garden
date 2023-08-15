@@ -9,14 +9,11 @@ export const metadata = {
   description: 'Digital Garden Using the Next.js app directory',
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // const isAdmin = session
-  //   ? session.user.email === process.env.ALT_ADMIN_EMAIL
-  //   : false
   return (
     <html lang="en">
       <body>

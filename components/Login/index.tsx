@@ -1,6 +1,5 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import { useSupabase } from '@/lib/supabase/supabase-browser'
 import { useRouter } from 'next/navigation'
 import { GhostButton } from '../Button'

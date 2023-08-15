@@ -1,6 +1,5 @@
 'use client'
 import * as React from 'react'
-import { ErrorAlert } from '@/components/Alert'
 import { CommentButton } from '@/components/Button'
 import { Textarea } from '@/components/Input'
 import { useDebounce } from '@/lib/utils/useDebounce'

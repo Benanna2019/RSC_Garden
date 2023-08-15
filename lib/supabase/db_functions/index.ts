@@ -1,7 +1,7 @@
+'use server'
 import type { Database } from '@/lib/supabase/db_types'
 import type { PostgrestError } from '@supabase/postgrest-js'
 import { getServerSession } from '../supabase-server'
-import { redirect } from 'next/navigation'
 
 export type CommentType = Database['public']['Tables']['comments']['Row']
 export type AuthorType = Database['public']['Tables']['profiles']['Row']

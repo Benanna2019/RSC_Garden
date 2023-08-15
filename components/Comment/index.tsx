@@ -3,13 +3,10 @@ import { MessageCircle } from 'react-feather'
 import CommentRef from './CommentRef'
 import SignInDialog from '../SigninDialogue'
 import GetComments from './GetComments'
-import { Session } from '@supabase/auth-helpers-nextjs'
 
 interface Props {
   refId: string
 }
-
-export const revalidate = 0
 
 export default function Comments({ refId }: Props) {
   return (

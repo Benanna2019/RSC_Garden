@@ -2,6 +2,8 @@ import { useGetCommentsQuery } from '@/lib/supabase/db_functions'
 import { Comment } from './Comment'
 import { getServerSession } from '@/lib/supabase/supabase-server'
 
+export const dynamic = 'force-dynamic'
+
 export default async function GetComments({ refId }: { refId: string }) {
   const { data, error } = await useGetCommentsQuery(refId)
   const supabase = getServerSession()

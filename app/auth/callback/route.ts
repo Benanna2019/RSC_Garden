@@ -1,4 +1,3 @@
-import { getServerSession } from '@/lib/supabase/supabase-server'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { NextResponse, type NextRequest } from 'next/server'
 import { cookies } from 'next/headers'
