@@ -33,9 +33,6 @@ export const Comment = ({ comment, session }: Props) => {
     timestamp: comment.created_at,
   })
 
-  console.log('author id', comment.author_id)
-  console.log('session id', session?.user.id)
-
   return (
     <div className="group flex flex-col space-y-0">
       <div className="flex items-center justify-between space-x-4">

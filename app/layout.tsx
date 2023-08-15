@@ -9,6 +9,8 @@ export const metadata = {
   description: 'Digital Garden Using the Next.js app directory',
 }
 
+export const dynamic = 'force-dynamic'
+
 export default function RootLayout({
   children,
 }: {

@@ -1,6 +1,5 @@
 'use client'
 
-import { useSupabase } from '@/lib/supabase/supabase-browser'
 import { useRouter } from 'next/navigation'
 import { GhostButton } from '../Button'
 import { GitHubIcon } from '../Icon'
@@ -26,7 +25,7 @@ export function SignOut() {
 }
 
 export function SignIn() {
-  const supabase = useSupabase()
+  const supabase = createClientComponentClient<Database>()
 
   const handleSignIn = async () => {
     await supabase.auth.signInWithOAuth({

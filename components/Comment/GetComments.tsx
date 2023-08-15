@@ -1,15 +1,18 @@
 import { useGetCommentsQuery } from '@/lib/supabase/db_functions'
 import { Comment } from './Comment'
-import { getServerSession } from '@/lib/supabase/supabase-server'
+import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
+import { Database } from '@/lib/supabase/db_types'
+import { cookies } from 'next/headers'
 
 export const dynamic = 'force-dynamic'
 
 export default async function GetComments({ refId }: { refId: string }) {
-  const { data, error } = await useGetCommentsQuery(refId)
-  const supabase = getServerSession()
+  const supabase = createServerActionClient<Database>({ cookies })
   const {
     data: { session },
   } = await supabase.auth.getSession()
+
+  const { data, error } = await useGetCommentsQuery(refId)
 
   return (
     <>

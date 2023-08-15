@@ -1,11 +1,13 @@
 'use server'
 
 import { CommentType } from '@/lib/supabase/db_functions'
-import { getServerSession } from '@/lib/supabase/supabase-server'
+import { Database } from '@/lib/supabase/db_types'
+import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 import { revalidatePath } from 'next/cache'
+import { cookies } from 'next/headers'
 
 export async function increment(slug: string) {
-  const supabase = getServerSession()
+  const supabase = createServerActionClient<Database>({ cookies })
   const { error } = await supabase.rpc('increment_post_views', {
     slug,
   })
@@ -18,7 +20,7 @@ export async function increment(slug: string) {
 export async function handleAddComment(
   commentData: Pick<CommentType, 'content' | 'post_id'>,
 ) {
-  const supabase = getServerSession()
+  const supabase = createServerActionClient<Database>({ cookies })
   const { content, post_id } = commentData
 
   const {
@@ -50,7 +52,7 @@ export async function handleUpdateComment({
   content: string
   updated_at: string
 }) {
-  const supabase = getServerSession()
+  const supabase = createServerActionClient<Database>({ cookies })
 
   const { data, error } = await supabase
     .from('comments')
@@ -65,7 +67,7 @@ export async function handleUpdateComment({
 }
 
 export async function handleDeleteComment(commentId: string) {
-  const supabase = getServerSession()
+  const supabase = createServerActionClient<Database>({ cookies })
 
   const { error } = await supabase.from('comments').delete().eq('id', commentId)
 

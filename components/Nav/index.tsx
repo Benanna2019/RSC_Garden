@@ -1,10 +1,12 @@
+import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 import { Navbar } from './Navbar'
-import { getServerSession } from '@/lib/supabase/supabase-server'
+import { Database } from '@/lib/supabase/db_types'
+import { cookies } from 'next/headers'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Nav() {
-  const supabase = getServerSession()
+  const supabase = createServerActionClient<Database>({ cookies })
   const {
     data: { session },
   } = await supabase.auth.getSession()

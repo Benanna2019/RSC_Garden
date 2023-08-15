@@ -1,7 +1,7 @@
-'use server'
 import type { Database } from '@/lib/supabase/db_types'
 import type { PostgrestError } from '@supabase/postgrest-js'
-import { getServerSession } from '../supabase-server'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
 
 export type CommentType = Database['public']['Tables']['comments']['Row']
 export type AuthorType = Database['public']['Tables']['profiles']['Row']
@@ -13,7 +13,9 @@ export type CommentInfoType = CommentType & { author: AuthorType }
 export async function useGetCommentsQuery(
   postId: string,
 ): Promise<{ data: CommentInfoType[]; error: PostgrestError }> {
-  const supabase = getServerSession()
+  const supabase = createServerComponentClient<Database>({
+    cookies,
+  })
   const { data, error } = await supabase
     .from('comments')
     .select('*, author: profiles(*)')
@@ -23,7 +25,9 @@ export async function useGetCommentsQuery(
 }
 
 export async function getUserInformation() {
-  const supabase = getServerSession()
+  const supabase = createServerComponentClient<Database>({
+    cookies,
+  })
   const { data } = await supabase.auth.getUser()
   const user = await supabase
     .from('profiles')
