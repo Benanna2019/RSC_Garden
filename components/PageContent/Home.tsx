@@ -1,14 +1,38 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Detail } from '../ListDetail/Detail'
+import { MapPin } from 'react-feather'
+import CharlestonPinMap from '/public/pin_map_charleston.png'
 
-export function SectionTitle(props: any) {
-  return (
-    <h4
-      className="col-span-2 pt-8 text-lg font-extrabold md:pt-0 md:text-right md:text-base md:font-normal md:text-opacity-40"
-      {...props}
-    />
-  )
-}
+const workHistory = [
+  {
+    href: 'https://egghead.io/',
+    title: 'Egghead.io',
+    subtitle: 'Instructor',
+    date: '2022—\u00a0\u00a0',
+  },
+  {
+    href: 'https://comparecredit.com',
+    title: 'CompareCredit',
+    subtitle: 'Associate Software Engineer',
+    date: '2022—\u00a0\u00a0',
+  },
+  {
+    href: 'https://tiag.net/',
+    title: 'TIAG',
+    subtitle: 'Junior Software Developer',
+    date: '2021—22',
+  },
+]
+
+const courses = [
+  {
+    href: 'https://egghead.io/courses/build-a-sanity-cms-powered-sveltekit-blog-a15d9e1f?af=5w7fzz',
+    title: 'SvelteKit Blog w/ Sanity',
+    date: 'April 2023',
+    image: '',
+  },
+]
 
 export function SectionContent(props: any) {
   return <div className="col-span-10" {...props} />
@@ -53,38 +77,25 @@ export function HomePage() {
           <SectionContainer className="mx-auto">
             <SectionContent>
               <div className="prose mx-auto">
-                <h1 className=" text-blue-500">Ben Patton</h1>
+                <p className="text-xl">Welcome digital traveler,</p>
                 <p>
-                  I&apos;m a developer and{' '}
+                  I&apos;m Ben. I&apos;m a developer, educator, and{' '}
                   <Link href="/articles">
                     <span>writer</span>
                   </Link>
-                  . I am currently writing a{' '}
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://careerchangers.co"
-                  >
-                    newsletter{' '}
-                  </a>
-                  for those thinking about or in process of changing careers to
-                  software developers.
+                  .
                 </p>
                 <p>
-                  I love all things javascript and occassionally dabble with
-                  other languages, Go, Rust, Elixir and only watch videos about
-                  C++.
+                  Alongside my primary job, which is working on a large
+                  marketing site which compares credit cards, ie the name
+                  CompareCredit, I focus primarily on teaching, mentoring, and
+                  helping people change careers network to find a job.
                 </p>
                 <p>
-                  Right now I am loving typescript/jsdoc, incrementally using
-                  functional programming libraries (ramda and lodash), and
-                  expanding my cloud knowledge.
+                  Recently I have launched my first course on egghead.io. It is
+                  a very basic course but it has paved the way to start doing
+                  more courses with the hope of becoming a fulltime educator.
                 </p>
-                <p>
-                  My aim in life is to care for and love others and to use code,
-                  writing, time, etc to that end.
-                </p>
-
                 <p>
                   Before becoming a software developer I worked in non-profit. I
                   made a living off of fundraising and was able to work with
@@ -93,6 +104,75 @@ export function HomePage() {
                   non-profit days are the catalyst for much of my thinking and
                   how I hope to impact the world through software.
                 </p>
+              </div>
+            </SectionContent>
+          </SectionContainer>
+
+          <SectionContainer className="mx-auto">
+            <SectionContent>
+              <div className="prose mx-auto">
+                <p className="text-xl">Courses</p>
+                <div className="flex flex-col space-y-3">
+                  {courses
+                    ? courses.map((course) => (
+                        <TableRow
+                          href={course.href}
+                          title={course.title}
+                          date={course.date}
+                          key={course.href}
+                        />
+                      ))
+                    : null}
+                </div>
+              </div>
+            </SectionContent>
+          </SectionContainer>
+
+          <SectionContainer className="mx-auto">
+            <SectionContent>
+              <div className="prose mx-auto">
+                <p className="text-xl">Work Exp</p>
+                <div className="flex flex-col space-y-3">
+                  {workHistory.map((job) => (
+                    <TableRow
+                      href={job.href}
+                      title={job.title}
+                      subtitle={job.subtitle}
+                      date={job.date}
+                      key={job.href}
+                    />
+                  ))}
+                </div>
+              </div>
+            </SectionContent>
+          </SectionContainer>
+
+          <SectionContainer className="mx-auto">
+            <SectionContent>
+              <div className="prose mx-auto">
+                <p className="text-xl">Socials</p>
+                <div className="flex flex-col space-y-3">
+                  <TableRow
+                    href={'https://www.linkedin.com/in/benjaminapatton/'}
+                    title={'LinkedIn'}
+                    subtitle={'Follow'}
+                    date={''}
+                  />
+                  <TableRow
+                    href={
+                      'https://www.youtube.com/channel/UCdznsnxpwF9qQCqfOomUqXg'
+                    }
+                    title={'YouTube'}
+                    subtitle={'Subscribe'}
+                    date={''}
+                  />
+                  <TableRow
+                    href={'https://github.com/Benanna2019'}
+                    title={'GitHub'}
+                    subtitle={'Follow'}
+                    date={''}
+                  />
+                </div>
               </div>
             </SectionContent>
           </SectionContainer>

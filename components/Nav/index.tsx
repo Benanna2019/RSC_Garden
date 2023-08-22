@@ -2,6 +2,7 @@ import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 import { Navbar } from './Navbar'
 import { Database } from '@/lib/supabase/db_types'
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
@@ -11,11 +12,14 @@ export default async function Nav() {
     data: { session },
   } = await supabase.auth.getSession()
 
-  // const isAdmin = session
-  //   ? session.user.email === process.env.ALT_ADMIN_EMAIL
-  //   : false
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('email', session?.user.email)
 
-  // add admin route for video uploads for courses
+  if (error) {
+    return <Navbar session={null} user={null} />
+  }
 
-  return <Navbar session={session} />
+  return <Navbar session={session} user={data[0]} />
 }

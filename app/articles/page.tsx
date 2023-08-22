@@ -12,14 +12,14 @@ export default async function Articles() {
   let data = await getPosts()
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col pt-8">
+    <div className="flex flex-col">
       <Detail.Container data-cy="home-intro">
         <Detail.ContentContainer>
           <div className="space-y-8 pb-24 md:space-y-16">
             <SectionContainer className="mx-auto">
-              <SectionContent>
-                <div className="prose mx-auto">
-                  <h1 className=" text-blue-500">All Articles</h1>
+              <SectionContent className="max-w-4xl">
+                <div className="prose">
+                  <h1 className="text-blue-500">All Articles</h1>
                   <Suspense fallback={<ArticleFallback />}>
                     {data.map((post: Post) => (
                       <ListItem

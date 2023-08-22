@@ -16,8 +16,13 @@ export function SignOut() {
   }
 
   return (
-    <div className="flex items-stretch justify-items-stretch self-stretch">
-      <GhostButton onClick={handleSignOut} style={{ flex: '1' }} size="large">
+    <div>
+      <GhostButton
+        onClick={handleSignOut}
+        style={{ flex: '1' }}
+        size="small"
+        className="text-sm text-black"
+      >
         → Sign out
       </GhostButton>
     </div>
@@ -34,10 +39,15 @@ export function SignIn() {
     })
   }
   return (
-    <div className="flex items-stretch justify-items-stretch self-stretch">
-      <GhostButton onClick={handleSignIn} style={{ flex: '1' }} size="large">
+    <div className="flex rounded-md  p-1 hover:border-2 hover:border-white hover:bg-gray-100">
+      <GhostButton
+        className="flex items-center space-x-2 "
+        onClick={handleSignIn}
+        style={{ flex: '1' }}
+        size="large"
+      >
         <GitHubIcon />
-        <span>Signin w/ Github</span>
+        <span>Signin</span>
       </GhostButton>
     </div>
   )

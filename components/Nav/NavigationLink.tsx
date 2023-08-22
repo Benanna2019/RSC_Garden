@@ -1,4 +1,6 @@
 'use client'
+import clsx from 'clsx'
+import { LayoutGroup, motion } from 'framer-motion'
 import Link from 'next/link'
 import * as React from 'react'
 
@@ -37,22 +39,27 @@ export function NavigationLink({
         <Link
           href={href}
           onClick={onClickFn}
-          className={classNames(
-            isActive
-              ? ' border-b-2 border-white text-white'
-              : ' text-white hover:border-b-2 hover:border-white ',
-            'text-md flex flex-1 items-center space-x-2 px-2 py-1.5 ',
+          className={clsx(
+            'flex align-middle text-neutral-50 transition-all hover:text-neutral-100',
+            {
+              'font-semibold': isActive,
+            },
           )}
         >
-          <span className="w-4 items-center justify-center text-white">
-            {Icon && <Icon />}
+          <span className="relative py-[5px] px-[10px]">
+            {label}
+            {isActive ? (
+              <motion.div
+                className="absolute inset-0 z-[-1] rounded-md text-orange-300"
+                layoutId="navbar"
+                transition={{
+                  type: 'spring',
+                  stiffness: 350,
+                  damping: 30,
+                }}
+              />
+            ) : null}
           </span>
-          <span className="font-semibold">{label}</span>
-          {Accessory && (
-            <span className=" w-4 items-center justify-center text-black text-opacity-40 dark:text-white">
-              <Accessory />
-            </span>
-          )}
         </Link>
       ) : null}
       {Action ? <Action /> : null}
