@@ -16,7 +16,7 @@ export function SignInDialogContent() {
       data-cy="sign-in-dialog"
       className="flex flex-col items-start space-y-6 p-4 md:p-6"
     >
-      <div className="text-primary grid w-full gap-4 sm:grid-cols-2">
+      <div className="grid w-full gap-4 text-primary sm:grid-cols-2">
         <div className="flex flex-col items-center justify-center space-y-2 rounded-lg bg-gray-100 p-4 dark:bg-gray-700 dark:bg-opacity-70">
           <svg
             className="h-6 w-6 text-gray-500 dark:text-gray-400"
@@ -27,7 +27,7 @@ export function SignInDialogContent() {
             <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
             <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
           </svg>
-          <p className="text-primary text-base font-semibold">
+          <p className="text-base font-semibold text-primary">
             Ask me anything
           </p>
         </div>
@@ -45,7 +45,7 @@ export function SignInDialogContent() {
               clipRule="evenodd"
             />
           </svg>
-          <p className="text-primary text-base font-semibold">
+          <p className="text-base font-semibold text-primary">
             Comment on posts
           </p>
         </div>
@@ -63,7 +63,7 @@ export function SignInDialogContent() {
               clipRule="evenodd"
             />
           </svg>
-          <p className="text-primary text-base font-semibold">
+          <p className="text-base font-semibold text-primary">
             Like and save links
           </p>
         </div>
@@ -81,7 +81,7 @@ export function SignInDialogContent() {
               clipRule="evenodd"
             />
           </svg>
-          <p className="text-primary text-base font-semibold">More soon...</p>
+          <p className="text-base font-semibold text-primary">More soon...</p>
         </div>
       </div>
 
@@ -96,7 +96,7 @@ export function SignInDialogContent() {
           style={{ flex: '1' }}
           size="large"
         >
-          <GitHubIcon />
+          <GitHubIcon width="20" height="20" />
           <span>Sign in with Github</span>
         </GithubButton>
       </div>
