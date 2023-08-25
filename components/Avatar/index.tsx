@@ -4,6 +4,8 @@ import { AvatarMenu } from './AvatarMenu'
 import { Database } from '@/lib/supabase/db_types'
 import AvatarDefault from './AvatarDefault'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Avatar() {
   const supabase = createServerActionClient<Database>({ cookies })
   const {
