@@ -3,6 +3,7 @@ import { MessageCircle } from 'react-feather'
 import CommentRef from './CommentRef'
 import SignInDialog from '../SigninDialogue'
 import GetComments from './GetComments'
+import { LoadingSpinner } from '../LoadingSpinner'
 
 interface Props {
   refId: string
@@ -15,7 +16,7 @@ export default function Comments({ refId }: Props) {
         <MessageCircle />
       </div>
       <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col space-y-3 px-4 pt-8 pb-4 md:px-8">
-        <React.Suspense fallback={<p>Loading comments...</p>}>
+        <React.Suspense fallback={<LoadingSpinner />}>
           <GetComments refId={refId} />
         </React.Suspense>
       </div>

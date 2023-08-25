@@ -6,8 +6,6 @@ import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { Post } from '@/lib/utils/post-validator'
 import { getPosts } from '@/models/post'
 
-export const dynamic = 'force-dynamic'
-
 export default async function Articles() {
   let data = await getPosts()
 

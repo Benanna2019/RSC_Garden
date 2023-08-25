@@ -9,8 +9,6 @@ export const metadata = {
   description: 'Digital Garden Using the Next.js app directory',
 }
 
-export const dynamic = 'force-dynamic'
-
 export default function RootLayout({
   children,
 }: {
@@ -19,10 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="max">
-        <main className="mx-4 mb-40 mt-8 flex max-w-3xl flex-col antialiased lg:mx-auto">
-          <Suspense fallback={<div>Loading...</div>}>
-            <Nav />
-          </Suspense>
+        <main className="mx-4 mb-40 mt-8 flex max-w-5xl flex-col antialiased lg:mx-auto">
+          <Nav />
           {children}
         </main>
         {/* <GetAnalytics /> */}

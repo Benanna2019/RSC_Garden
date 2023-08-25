@@ -23,7 +23,7 @@ export function SignOut() {
         size="small"
         className="text-sm text-black"
       >
-        → Sign out
+        Sign out
       </GhostButton>
     </div>
   )
@@ -46,7 +46,7 @@ export function SignIn() {
         style={{ flex: '1' }}
         size="large"
       >
-        <GitHubIcon />
+        <GitHubIcon width="16" height="16" />
         <span>Signin</span>
       </GhostButton>
     </div>

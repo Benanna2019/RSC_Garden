@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import { Avatar } from '@/components/Avatar'
 import Button, { PrimaryButton } from '@/components/Button'
 import { Textarea } from '@/components/Input'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
@@ -12,6 +11,7 @@ import { CommentMenu } from './CommentMenu'
 import { CommentInfoType } from '@/lib/supabase/db_functions'
 import { Session } from '@supabase/auth-helpers-nextjs'
 import { handleDeleteComment, handleUpdateComment } from '@/app/actions'
+import { CommentAvatar } from './CommentAvatar'
 
 type Props = {
   comment: CommentInfoType
@@ -37,7 +37,7 @@ export const Comment = ({ comment, session }: Props) => {
     <div className="group flex flex-col space-y-0">
       <div className="flex items-center justify-between space-x-4">
         <div className="flex items-center space-x-4">
-          <Avatar
+          <CommentAvatar
             user={comment.author.name}
             src={comment.author.avatar_url}
             width={40}
@@ -48,7 +48,7 @@ export const Comment = ({ comment, session }: Props) => {
           />
 
           <div className="flex space-x-1">
-            <div className="text-primary font-semibold leading-snug">
+            <div className="font-semibold leading-snug text-primary">
               <div className="flex break-all line-clamp-1">
                 {comment.author.name}
               </div>

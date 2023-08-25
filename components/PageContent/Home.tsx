@@ -1,38 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Detail } from '../ListDetail/Detail'
-import { MapPin } from 'react-feather'
-import CharlestonPinMap from '/public/pin_map_charleston.png'
-
-const workHistory = [
-  {
-    href: 'https://egghead.io/',
-    title: 'Egghead.io',
-    subtitle: 'Instructor',
-    date: '2022—\u00a0\u00a0',
-  },
-  {
-    href: 'https://comparecredit.com',
-    title: 'CompareCredit',
-    subtitle: 'Associate Software Engineer',
-    date: '2022—\u00a0\u00a0',
-  },
-  {
-    href: 'https://tiag.net/',
-    title: 'TIAG',
-    subtitle: 'Junior Software Developer',
-    date: '2021—22',
-  },
-]
-
-const courses = [
-  {
-    href: 'https://egghead.io/courses/build-a-sanity-cms-powered-sveltekit-blog-a15d9e1f?af=5w7fzz',
-    title: 'SvelteKit Blog w/ Sanity',
-    date: 'April 2023',
-    image: '',
-  },
-]
+import {
+  EggheadInstructorCard,
+  SvelteKitCourseCard,
+  SocialCards,
+  CompareCreditInfoCard,
+  TiagInfoCard,
+} from '../InfoCards'
 
 export function SectionContent(props: any) {
   return <div className="col-span-10" {...props} />
@@ -81,7 +56,9 @@ export function HomePage() {
                 <p>
                   I&apos;m Ben. I&apos;m a developer, educator, and{' '}
                   <Link href="/articles">
-                    <span>writer</span>
+                    <span className="text-blue-500 hover:underline">
+                      writer
+                    </span>
                   </Link>
                   .
                 </p>
@@ -111,18 +88,9 @@ export function HomePage() {
           <SectionContainer className="mx-auto">
             <SectionContent>
               <div className="prose mx-auto">
-                <p className="text-xl">Courses</p>
+                <p className="text-xl sm:text-3xl">Courses</p>
                 <div className="flex flex-col space-y-3">
-                  {courses
-                    ? courses.map((course) => (
-                        <TableRow
-                          href={course.href}
-                          title={course.title}
-                          date={course.date}
-                          key={course.href}
-                        />
-                      ))
-                    : null}
+                  <SvelteKitCourseCard />
                 </div>
               </div>
             </SectionContent>
@@ -131,17 +99,11 @@ export function HomePage() {
           <SectionContainer className="mx-auto">
             <SectionContent>
               <div className="prose mx-auto">
-                <p className="text-xl">Work Exp</p>
-                <div className="flex flex-col space-y-3">
-                  {workHistory.map((job) => (
-                    <TableRow
-                      href={job.href}
-                      title={job.title}
-                      subtitle={job.subtitle}
-                      date={job.date}
-                      key={job.href}
-                    />
-                  ))}
+                <p className="text-xl sm:text-3xl">Work Exp</p>
+                <div className="flex flex-col space-y-6">
+                  <EggheadInstructorCard />
+                  <CompareCreditInfoCard />
+                  <TiagInfoCard />
                 </div>
               </div>
             </SectionContent>
@@ -150,29 +112,8 @@ export function HomePage() {
           <SectionContainer className="mx-auto">
             <SectionContent>
               <div className="prose mx-auto">
-                <p className="text-xl">Socials</p>
-                <div className="flex flex-col space-y-3">
-                  <TableRow
-                    href={'https://www.linkedin.com/in/benjaminapatton/'}
-                    title={'LinkedIn'}
-                    subtitle={'Follow'}
-                    date={''}
-                  />
-                  <TableRow
-                    href={
-                      'https://www.youtube.com/channel/UCdznsnxpwF9qQCqfOomUqXg'
-                    }
-                    title={'YouTube'}
-                    subtitle={'Subscribe'}
-                    date={''}
-                  />
-                  <TableRow
-                    href={'https://github.com/Benanna2019'}
-                    title={'GitHub'}
-                    subtitle={'Follow'}
-                    date={''}
-                  />
-                </div>
+                <p className="text-xl sm:text-3xl">Socials</p>
+                <SocialCards />
               </div>
             </SectionContent>
           </SectionContainer>

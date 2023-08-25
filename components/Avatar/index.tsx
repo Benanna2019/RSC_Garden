@@ -1,25 +1,27 @@
-import Image from 'next/image'
-import * as React from 'react'
+import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import { AvatarMenu } from './AvatarMenu'
+import { Database } from '@/lib/supabase/db_types'
+import AvatarDefault from './AvatarDefault'
 
-export function Avatar({ user, src, ...props }: any) {
-  const fallbackUrl = '/static/img/fallback-avatar.png'
-  const [srcState, setSrcState] = React.useState(src || fallbackUrl)
+export default async function Avatar() {
+  const supabase = createServerActionClient<Database>({ cookies })
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
 
-  // forces avatars to update if the component is in the same place between
-  // page loads, e.g. changing between AMA questions, the header avatar should
-  // update
-  React.useEffect(() => {
-    if (src) setSrcState(src)
-  }, [src])
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('email', session?.user.email)
 
-  return (
-    <Image
-      alt={`${user.name || user.username}'s profile photo`}
-      src={srcState}
-      {...props}
-      onError={() => {
-        setSrcState(fallbackUrl)
-      }}
-    />
-  )
+  if (!data || data.length === 0 || error) {
+    console.error(error)
+  }
+
+  if (data) {
+    return <AvatarMenu user={data[0]} />
+  }
+
+  return null
 }

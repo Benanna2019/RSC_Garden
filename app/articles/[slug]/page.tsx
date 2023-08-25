@@ -3,8 +3,6 @@ import { getPostBySlug } from '@/models/post'
 import Comments from '@/components/Comment'
 import ArticleDetail from '@/components/Article/ArticleDetail'
 
-export const dynamic = 'force-dynamic'
-
 export default async function PostPage({ params }: any) {
   let data = await getPostBySlug(params.slug)
 

@@ -36,7 +36,7 @@ export function ListItem({
         >
           {byline && typeof byline === 'string' ? (
             <>
-              <div className=" w-18 flex flex-col justify-center rounded-md border-2 border-slate-900 bg-slate-100 bg-opacity-25 text-center text-opacity-80">
+              <div className=" w-18 flex flex-col justify-center rounded-md border-2 border-slate-900 bg-slate-100 bg-opacity-25 text-center text-opacity-80 hover:no-underline">
                 <div className="w-12 pt-2 text-xs text-slate-900">
                   {format(parseISO(byline), 'MMM')}
                 </div>
@@ -44,7 +44,7 @@ export function ListItem({
                   {formattedDate}
                 </div>
               </div>
-              <div className="flex flex-col justify-center hover:underline">
+              <div className="flex flex-col justify-center">
                 <div className="font-medium line-clamp-1">{title}</div>
                 {description && (
                   <div className="text-opacity-80 line-clamp-1">

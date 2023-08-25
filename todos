@@ -1,0 +1,48 @@
+Supabase Configuration/setup
+
+[] - setup Tips that has the same structure as a course just with 1 video and maybe a description
+[] - add RLS policies to Lesson, Video, Course, & userLessonProgress
+[] - add supabase server functions from the vercel/nextjs-subscription starter
+[] - create supabase functions for handling mux stuff/video/courses
+[] - functions for admin uploading courses
+[] - functions for admin uploading lessons
+[] - copy functions that use prisma from mux template and replace prisma with supabase
+
+Shadui
+
+[x] - add shadui user settings drop down
+[x] - have an avater image that on click shows drop down menu
+[] - add dropdown for articles to show most recent articles (use remeda or lodash take function)
+[x] - add cards for different home page categories
+[x] - instead of the table design, have cards for:
+[x] - work history
+[x] - courses
+[x] - social links (linkedin, twitter, and youtube)
+
+Stripe (all of this can be taken from nextjs subscription payment starter)
+[] - add webhook
+[] - add utils
+[] - add fixtures
+[] - add api routes for create-checkout-session and create-portal-link
+[] - add components
+[] - create test links for payments for courses
+[] - probably want to go the wes bos route (not sure if subscriptions is something I want to do)
+[] - each course would have a highlight section and then clicking it would take the user to a course details page
+[] - should it all be housed in the app? I think so but need to evaluate
+
+<!-- For Disabling Javascript -->
+
+[x] - make navbar static or do I just want links in home page sections?
+[x] - have links throughout home page to different pages
+[] - have links on articles page to go to home page (breadcrumb)
+
+<!-- FALLS UNDER HANDLING THE DISABLING OF JS: For the below Items I just changed the data loading to not be 'force-dynamic' -->
+
+[x] - Move data loading and useEffects for tracking article views into an isolated client componet
+[x] - This will still allow for loading the article detail info without showing comments
+
+<!-- Currently wherever I have suspense there is an infinite loading state if js is off -->
+<!-- Investigate how to handle this -->
+
+[] - Migrate all articles to use contentlayer - (this will remove need for dynamic loading aside from comments but can probably move this to static)
+[] - Everytime I publish an article it will set off a build rather than having to worry about anything in sanity
