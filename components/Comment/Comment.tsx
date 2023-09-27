@@ -29,7 +29,7 @@ export const Comment = ({ comment, session }: Props) => {
   }
 
   const createdAt = timestampToCleanTime({
-    month: 'short',
+    monthForm: 'short',
     timestamp: comment.created_at,
   })
 
@@ -49,13 +49,13 @@ export const Comment = ({ comment, session }: Props) => {
 
           <div className="flex space-x-1">
             <div className="font-semibold leading-snug text-primary">
-              <div className="flex break-all line-clamp-1">
+              <div className="line-clamp-1 flex break-all">
                 {comment.author.name}
               </div>
             </div>
             <p className="text-quaternary leading-snug">·</p>
             <p
-              className="text-quaternary leading-snug line-clamp-1"
+              className="text-quaternary line-clamp-1 leading-snug"
               title={createdAt.raw}
             >
               {createdAt.formatted}
