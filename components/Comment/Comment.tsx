@@ -4,7 +4,7 @@ import * as React from 'react'
 import Button, { PrimaryButton } from '@/components/Button'
 import { Textarea } from '@/components/Input'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
-import { timestampToCleanTime } from '@/lib/utils/transformers'
+// import { timestampToCleanTime } from '@/lib/utils/transformers'
 
 import { MarkdownRenderer } from '../MarkdownRenderer'
 import { CommentMenu } from './CommentMenu'
@@ -28,10 +28,11 @@ export const Comment = ({ comment, session }: Props) => {
     setIsEditing(true)
   }
 
-  const createdAt = timestampToCleanTime({
-    monthForm: 'short',
-    timestamp: comment.created_at,
-  })
+  // const createdAt = timestampToCleanTime({
+  //   timestamp: comment?.created_at,
+  // })
+
+  // console.log('created at', createdAt)
 
   return (
     <div className="group flex flex-col space-y-0">
@@ -54,12 +55,13 @@ export const Comment = ({ comment, session }: Props) => {
               </div>
             </div>
             <p className="text-quaternary leading-snug">·</p>
+            {/* 
             <p
               className="text-quaternary line-clamp-1 leading-snug"
-              title={createdAt.raw}
+              title={createdAt?.raw ?? undefined}
             >
-              {createdAt.formatted}
-            </p>
+              {createdAt?.formatted ?? ''}
+            </p> */}
           </div>
         </div>
 

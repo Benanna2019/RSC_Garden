@@ -3,7 +3,6 @@ import * as React from 'react'
 import Link from 'next/link'
 //@ts-ignore
 import { useInView } from 'react-intersection-observer'
-import { timestampToCleanTime } from '@/lib/utils/transformers'
 import { Detail } from '../ListDetail/Detail'
 import { Tags } from '../Tags'
 import { increment } from '@/app/actions'
@@ -27,7 +26,7 @@ export default function ArticleDetail({ post, children }: Props) {
     }
   }, [inView])
 
-  const publishedAt = timestampToCleanTime({ timestamp: post.date })
+  // const publishedAt = timestampToCleanTime({ timestamp: post.date })
   return (
     <>
       {/* <React.Suspense fallback={<LoadingSpinner />}> */}
@@ -42,8 +41,11 @@ export default function ArticleDetail({ post, children }: Props) {
             </Link>
             <Tags tags={post.categories} />
             <Detail.Title ref={ref}>{post.title}</Detail.Title>
-            <span title={publishedAt.raw} className="inline-block leading-snug">
-              {publishedAt.formatted}
+            <span
+              // title={publishedAt?.raw}
+              className="inline-block leading-snug"
+            >
+              {post.date}
             </span>
           </Detail.Header>
 

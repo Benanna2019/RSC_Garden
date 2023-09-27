@@ -1,6 +1,6 @@
 import { format, getDate } from 'date-fns'
 
-type Props = {
+export type DateProps = {
   timestamp?: number | string | null
   locale?: string
   year?: 'numeric' | '2-digit'
@@ -8,30 +8,19 @@ type Props = {
   dayForm?: 'numeric' | '2-digit'
 }
 
-export function timestampToCleanTime({
-  timestamp = null,
-  locale = 'en-us',
-  year = 'numeric',
-  monthForm = 'long',
-  dayForm = 'numeric',
-}: Props) {
-  const date = timestamp ? new Date(timestamp) : new Date()
+// function timestampToCleanTime({ timestamp = null }: DateProps) {
+//   const date = timestamp ? new Date(timestamp) : new Date()
+//   const formatted = format(date, 'MM/dd/yyyy')
+//   // const raw = dateForBrowsers
 
-  const formatted = date.toLocaleDateString(locale, {
-    year,
-    month: monthForm,
-    day: dayForm,
-  })
+//   console.log('formatted', formatted)
+//   return {
+//     formatted,
+//     // raw,
+//   }
+// }
 
-  const raw = date.toISOString()
-
-  return {
-    formatted,
-    raw,
-  }
-}
-
-export function dateHelper({ timestamp = null }: Props) {
+export function dateHelper({ timestamp = null }: DateProps) {
   const date = timestamp ? new Date(timestamp) : new Date()
 
   const day = getDate(date)
@@ -41,3 +30,5 @@ export function dateHelper({ timestamp = null }: Props) {
     month,
   }
 }
+
+// const fixDateForAllBrowsers = (dateString: any) => dateString.replace(/-/g, '/')

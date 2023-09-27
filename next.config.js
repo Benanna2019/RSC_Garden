@@ -4,6 +4,7 @@ const { withContentlayer } = require('next-contentlayer')
 const nextConfig = {
   experimental: {
     serverActions: true,
+    optimizePackageImports: ['date-fns'],
   },
   images: {
     formats: ['image/webp'],
