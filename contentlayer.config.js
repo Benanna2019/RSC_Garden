@@ -16,12 +16,10 @@ const blogComputedFields = {
       '@context': 'https://schema.org',
       '@type': 'Blog',
       headline: doc.title,
-      datePublished: doc.publishedAt,
-      dateModified: doc.publishedAt,
-      description: doc.summary,
-      image: doc.image
-        ? `https://www.benapatton.dev/${doc.image}`
-        : `https://www.benapatton.dev/og?title=${doc.title}`,
+      datePublished: doc.date,
+      dateModified: doc.date,
+      description: doc.excerpt,
+      image: `https://www.benapatton.dev/og?title=${doc.title}`,
       url: `https://www.benapatton.dev/blog/${doc._raw.flattenedPath}`,
       author: {
         '@type': 'Person',
@@ -38,24 +36,44 @@ export const Blog = defineDocumentType(() => ({
   filePathPattern: `**/*.mdx`,
   contentType: 'mdx',
   fields: {
+    _id: {
+      type: 'string',
+      required: true,
+    },
     title: {
       type: 'string',
       required: true,
     },
-    publishedAt: {
+    slug: {
       type: 'string',
       required: true,
     },
-    summary: {
+    date: {
+      type: 'string',
+      required: true,
+    },
+    excerpt: {
+      type: 'string',
+      required: true,
+    },
+    categories: {
+      type: 'list',
+      of: {
+        type: 'string',
+      },
+      required: true,
+    },
+    author: {
+      type: 'string',
+      required: true,
+    },
+    authorImage: {
       type: 'string',
       required: true,
     },
     type: {
       type: 'string',
       required: true,
-    },
-    image: {
-      type: 'string',
     },
   },
   computedFields: blogComputedFields,

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import * as React from 'react'
 import { getDate, parseISO, format } from 'date-fns'
+import { dateHelper } from '@/lib/utils/transformers'
 
 interface Props {
   title?: string
@@ -19,12 +20,12 @@ export function ListItem({
   leadingAccessory,
   onClick,
 }: Props) {
-  const formattedDate = getDate(parseISO(byline as string))
+  const { day, month } = dateHelper({ timestamp: byline as string })
   return (
     <Link href={href}>
       <span
         onClick={onClick && onClick}
-        className="flex space-x-3 border-b border-gray-100 py-3 px-3.5 text-sm  hover:rounded-md hover:bg-slate-100 lg:rounded-sm lg:border-none lg:py-2"
+        className="flex space-x-3 border-b border-gray-100 px-3.5 py-3 text-sm  hover:rounded-md hover:bg-slate-100 lg:rounded-sm lg:border-none lg:py-2"
       >
         {leadingAccessory && <>{leadingAccessory}</>}
         <div
@@ -37,17 +38,15 @@ export function ListItem({
           {byline && typeof byline === 'string' ? (
             <>
               <div className=" w-18 flex flex-col justify-center rounded-md border-2 border-slate-900 bg-slate-100 bg-opacity-25 text-center text-opacity-80 hover:no-underline">
-                <div className="w-12 pt-2 text-xs text-slate-900">
-                  {format(parseISO(byline), 'MMM')}
-                </div>
+                <div className="w-12 pt-2 text-xs text-slate-900">{month}</div>
                 <div className="w-12 pb-2 text-2xl font-semibold text-slate-900">
-                  {formattedDate}
+                  {day}
                 </div>
               </div>
               <div className="flex flex-col justify-center">
-                <div className="font-medium line-clamp-1">{title}</div>
+                <div className="line-clamp-1 font-medium">{title}</div>
                 {description && (
-                  <div className="text-opacity-80 line-clamp-1">
+                  <div className="line-clamp-1 text-opacity-80">
                     {description}
                   </div>
                 )}
@@ -56,13 +55,13 @@ export function ListItem({
           ) : (
             <>
               <div className="flex flex-col justify-center">
-                <div className="font-medium line-clamp-1">{title}</div>
+                <div className="line-clamp-1 font-medium">{title}</div>
                 {description && (
-                  <div className="text-opacity-60 line-clamp-1">
+                  <div className="line-clamp-1 text-opacity-60">
                     {description}
                   </div>
                 )}
-                <div className="text-opacity-40  line-clamp-1">{byline}</div>
+                <div className="line-clamp-1  text-opacity-40">{byline}</div>
               </div>
             </>
           )}

@@ -4,15 +4,14 @@ import Link from 'next/link'
 //@ts-ignore
 import { useInView } from 'react-intersection-observer'
 import { timestampToCleanTime } from '@/lib/utils/transformers'
-import type { Post } from '@/lib/utils/post-validator'
 import { Detail } from '../ListDetail/Detail'
 import { Tags } from '../Tags'
-import { MarkdownRenderer } from '../MarkdownRenderer'
-import { LoadingSpinner } from '../LoadingSpinner'
 import { increment } from '@/app/actions'
+import { Blog } from '@/.contentlayer/generated'
+import { MdxRenderer } from '../MdxRenderer'
 
 interface Props {
-  post: Post
+  post: Blog
   children: React.ReactNode
 }
 
@@ -48,7 +47,10 @@ export default function ArticleDetail({ post, children }: Props) {
             </span>
           </Detail.Header>
 
-          <MarkdownRenderer children={post.body} className="prose mt-8" />
+          {/* <MarkdownRenderer children={post.body.code} className="prose mt-8" /> */}
+          <div className="prose mt-8">
+            <MdxRenderer code={post.body.code} />
+          </div>
 
           {/* bottom padding to give space between post content and comments */}
           <div className="py-6" />

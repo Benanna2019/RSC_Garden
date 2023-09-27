@@ -3,12 +3,9 @@ import { Detail } from '@/components/ListDetail/Detail'
 import { ListItem } from '@/components/ListDetail/ListItem'
 import { SectionContainer, SectionContent } from '@/components/PageContent/Home'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
-import { Post } from '@/lib/utils/post-validator'
-import { getPosts } from '@/models/post'
+import { Blog, allBlogs as data } from 'contentlayer/generated'
 
 export default async function Articles() {
-  let data = await getPosts()
-
   return (
     <div className="flex flex-col">
       <Detail.Container data-cy="home-intro">
@@ -19,15 +16,22 @@ export default async function Articles() {
                 <div className="prose">
                   <h1 className="text-blue-500">All Articles</h1>
                   <Suspense fallback={<ArticleFallback />}>
-                    {data.map((post: Post) => (
-                      <ListItem
-                        key={post._id}
-                        href={`/articles/${post.slug}`}
-                        title={post.title}
-                        description={post.excerpt}
-                        byline={post.date}
-                      />
-                    ))}
+                    {data
+                      .sort((a, b) => {
+                        if (new Date(a.date) > new Date(b.date)) {
+                          return -1
+                        }
+                        return 1
+                      })
+                      .map((post: Blog) => (
+                        <ListItem
+                          key={post._id}
+                          href={`/articles/${post.slug}`}
+                          title={post.title}
+                          description={post.excerpt}
+                          byline={post.date}
+                        />
+                      ))}
                   </Suspense>
                 </div>
               </SectionContent>

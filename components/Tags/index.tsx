@@ -6,10 +6,7 @@ export function Tags({ tags }: any) {
   return (
     <div className="flex flex-wrap space-x-2">
       {tags.map((tag: any) => (
-        <Tag
-          key={tag.name ? tag.name : tag.title}
-          name={tag.name ? tag.name : tag.title}
-        />
+        <Tag key={tag} name={tag} />
       ))}
     </div>
   )
