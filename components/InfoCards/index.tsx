@@ -47,6 +47,28 @@ export function SvelteKitCourseCard() {
   )
 }
 
+export function NextMigrationCourseCard() {
+  return (
+    <Card className="relative inset-0 isolate h-auto w-full rounded-md bg-[url('/logos/NextMigrationCourseGraphic.webp')] bg-contain bg-fixed bg-right bg-no-repeat">
+      <div className="absolute inset-0 bg-gray-900 bg-opacity-50 mix-blend-multiply" />
+      <CardHeader>
+        <CardTitle>
+          <a
+            className="relative"
+            href="https://egghead.io/courses/migrate-next-js-application-to-app-router-c4b31d29?af=5w7fzz"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="text-white hover:text-blue-300">
+              Migrate Next.js Application to App Router
+            </span>
+          </a>
+        </CardTitle>
+      </CardHeader>
+    </Card>
+  )
+}
+
 // Keeping this as a reference
 const workHistory = [
   {

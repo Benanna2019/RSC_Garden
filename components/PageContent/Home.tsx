@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Detail } from '../ListDetail/Detail'
 import {
   EggheadInstructorCard,
@@ -7,6 +6,7 @@ import {
   SocialCards,
   CompareCreditInfoCard,
   TiagInfoCard,
+  NextMigrationCourseCard,
 } from '../InfoCards'
 
 export function SectionContent(props: any) {
@@ -90,6 +90,7 @@ export function HomePage() {
               <div className="prose mx-auto">
                 <p className="text-xl sm:text-3xl">Courses</p>
                 <div className="flex flex-col space-y-3">
+                  <NextMigrationCourseCard />
                   <SvelteKitCourseCard />
                 </div>
               </div>
