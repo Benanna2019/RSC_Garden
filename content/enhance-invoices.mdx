@@ -96,9 +96,11 @@ In Enhance, you don't really have the same concept. You have attributes. And you
 
 #### Pure functions
 
-Custom elements are pure functions. You are held accountable to this in enhance because you can't import anything into your custom element file. So where as you may have your long list of imports in any other frontend framework, you don't have that in enhance. Whatever you need should come from the attributes and store.
+~Custom elements are pure functions. You are held accountable to this in enhance because you can't import anything into your custom element file. So where as you may have your long list of imports in any other frontend framework, you don't have that in enhance. Whatever you need should come from the attributes and store~.
 
-This is actually a really nice feature. Some components get so large that you can't really seem to discern what the component itself is doing. But with pure functions that are responsible for a certain bit of ui, you can easily compose your custom elements because they are all exposed to the same store/state rather than passing it around everywhere.
+_**Update**_ You can import things into your custom element file. I was wrong. I had a particular issue when I was importing my `currencyFormatter` function into my custom element file. I was getting an error that said `currencyFormatter`. I was able to get around this by adding the function to the api route and returning it in the get method. I then added it to the custom element's store and was able to use it in the html. I should have done more investigating because I'm not exactly sure why I was getting that error but removing it solved the issue for me.
+
+I spoke with Simon MacDonald on the Enhance team and he helped me with this. Which I should also say, the Enhance team is incredibly helpful and responsive. I have had a great experience with them. Their discord is very active and they get to questions pretty quickly.
 
 #### Api routes
 
